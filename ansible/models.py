@@ -30,15 +30,15 @@ class Script(models.Model):
         return self.script_name
 
 
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    account = models.CharField(max_length=100)
-    password = models.CharField(max_length=200)
-    privilege = models.ManyToManyField(Host, blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        self.password = make_password(self.password, None, 'pbkdf2_sha256')
-        super(User, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
+# class User(models.Model):
+#     name = models.CharField(max_length=100)
+#     account = models.CharField(max_length=100)
+#     password = models.CharField(max_length=200)
+#     privilege = models.ManyToManyField(Host, blank=True, null=True)
+#
+#     def save(self, *args, **kwargs):
+#         self.password = make_password(self.password, None, 'pbkdf2_sha256')
+#         super(User, self).save(*args, **kwargs)
+#
+#     def __str__(self):
+#         return self.name

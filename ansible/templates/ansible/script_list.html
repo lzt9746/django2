@@ -1,0 +1,28 @@
+{% extends "ansible/base.html" %}
+{% block main %}
+    <table class="table-bordered table table-hover">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Script Name</td>
+                <td>Description</td>
+                <td>Publish Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for script in script_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ script.script_name }}</td>
+                    <td>{{ script.description }}</td>
+                    <td>{{ script.pub_time }}</td>
+                    <td>
+                        <a class="btn-primary btn btn-sm" href="{% url 'ansible:script-update' script.id %}">Edit</a>
+                        <a class="btn-sm btn btn-danger" href="{% url 'ansible:script-delete' script.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-sm btn-primary" href="{% url 'ansible:script-create' %}">Create</a>
+{% endblock %}

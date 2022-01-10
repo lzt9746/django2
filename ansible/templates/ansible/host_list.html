@@ -1,0 +1,37 @@
+{% extends 'ansible/base.html' %}
+{% block main %}
+<table class="select2-container"></table>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Host name</th>
+            <th>Host IP</th>
+            <th>Host Role</th>
+            <th>HostGroup</th>
+        </tr>
+    </thead>
+    {% for host in host_list %}
+         <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ host.hostname }}</td>
+            <td>{{ host.ipaddress }}</td>
+            <td>{{ host.role }}</td>
+            <td>
+                {% for ho in host.hostgroup_set.all %}
+                    {% if not forloop.last %}
+                        {{ ho }},
+                    {% else %}
+                        {{ ho }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="{% url 'ansible:host-update' host.id %}">Edit</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'ansible:host-delete' host.id %}">Delete</a>
+            </td>
+         </tr>
+    {% endfor %}
+</table>
+<a class="btn btn-primary btn-sm" href="{% url 'ansible:host-create' %}">Create</a>
+{% endblock main %}

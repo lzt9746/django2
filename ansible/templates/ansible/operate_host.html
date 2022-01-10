@@ -1,0 +1,40 @@
+{% extends 'ansible/base.html' %}
+{% block main %}
+    <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+        <form action="{% url 'ansible:operate-host-execute' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_host">Host:</label>
+                <select class="form-control" name="host" id="id_host" required>
+                    {% comment %}<option disabled selected value="Please select host">Please select host</option> {% endcomment %}
+                    {% for host in hosts %}
+                        <option value="{{ host.hostname }}">{{ host.hostname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_ansible_module">Ansible Module:</label>
+                <input class="form-control" name="ansible_module" type="text" id="id_ansible_module" required>
+            </div>
+            <div class="form-group">
+                <label for="id_ansible_parameter">Parameter:</label>
+                <input class="form-control" name="ansible_parameter" type="text" id="id_ansible_parameter" required>
+            </div>
+            <div class="form-group">
+                <label for="id_host_username">Host Username:</label>
+                <input class="form-control" name="host_username" type="text" id="id_host_username" required>
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password:</label>
+                <input class="form-control" name="host_password" type="password" id="id_password" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-sm btn-primary" type="submit">Execute</button>
+            </div>
+        </form>
+        </div>
+	</div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+﻿{% extends 'ansible/base.html' %}
+{% block main %}
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Host name</td>
+                <td>IP address</td>
+                <td>Runtime</td>
+                <td>CPU usage</td>
+                <td>Memory usage</td>
+                <td>Host status</td>
+                <td>Web ssh</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for host in hosts %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ host.hostname }}</td>
+                <td>{{ host.ipaddress }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="{% if forloop.counter == 2 %} text-success {% else %} text-danger {% endif %} text">
+                    <strong>{% if forloop.counter == 2 %}
+                        Online
+                        {% else %}
+                        Unknown
+                    {% endif %}</strong> </td>
+                <td><a class="btn btn-primary btn-sm" onclick="" href="">Connect</a></td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+{% endblock %}

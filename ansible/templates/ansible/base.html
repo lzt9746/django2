@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title>Ansible Mangement System</title>
+    <link rel="icon"  href="{% static 'image/favicon.ico' %}">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'ansible:index' %}" style="color:orangered">Ansible</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Inventory<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a href="{% url 'ansible:hostgroup-list' %}">HostGroup</a></li>
+                                <li class="active"><a href="{% url 'ansible:host-list' %}">Host</a></li>
+                                <li class="active">
+                                     <a href="{% url 'ansible:script-list' %}">Script</a>
+                                </li>
+                                <li>
+                                     <a href="#">Synchronization</a>
+                                </li>
+                                {% comment %} <li class="divider">
+                                </li>
+                                <li>
+                                     <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                     <a href="#">One more separated link</a>
+                                </li> {% endcomment %}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Operation<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="#">Hostgroup</a></li>
+                                <li class="active"><a href="{% url 'ansible:operate-host' %}">Host</a></li>
+                                {% comment %} <li>
+                                     <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                     <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                     <a href="#">One more separated link</a>
+                                </li> {% endcomment %}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permission<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li {{ hostgroup_active|safe }}><a href="#">Usergroup</a></li>
+                                <li {{ host_active|safe }}><a href="#">User</a></li>
+                                {% comment %} <li>
+                                     <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                     <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                     <a href="#">One more separated link</a>
+                                </li> {% endcomment %}
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                                <input type="text" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    {% comment %} <ul class="nav navbar-nav navbar-right">
+                        <li>
+                             <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                     <a href="#">Action</a>
+                                </li>
+                                <li>
+                                     <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                     <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                     <a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul> {% endcomment %}
+                </div>
+
+            </nav>
+        </div>
+        <div class="col-md-8 col-md-offset-2 column">
+            {% block main %}
+            {% endblock main %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
